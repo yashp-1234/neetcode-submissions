@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool isSameTree(TreeNode* a, TreeNode* b) {
+        if (!a && !b) return true;
+        if (!a || !b) return false;
+        return a->val == b->val 
+            && isSameTree(a->left, b->left) 
+            && isSameTree(a->right, b->right);
+    }
+
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        if (!root) return false;
+        if (isSameTree(root, subRoot)) return true;
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+    }
+};
